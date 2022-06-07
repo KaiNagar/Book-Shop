@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Book Shop KN</title>
+</head>
+
+<body onload="onInit()">
+    <h1 data-trans="header">Welcome To My BookShop!</h1>
+    <select class="set-lang" onchange="onSetLang(this.value)">
+        <option value="en">English</option>
+        <option value="he">עברית</option>
+        <!-- <option value="es">Spanish</option> -->
+    </select>
+    <div class="fetures">
+
+        <!-- <button class="add-bookbtn" title="Add Book" onclick="onAddBook()">Add Book</button> -->
+
+        <form onsubmit="onAddBook(event)" class="add-book-input">
+            <label for="new-book-name" data-trans="newBookName">
+                New Book Name:
+            </label>
+            <input data-trans="newBookNamePlaceHolder" required name="new-book-name" type="text" class="new-book-name"
+                placeholder="Type Book Name...">
+            <label for="new-book-price" data-trans="newBookPrice">
+                New Book Price:
+            </label>
+            <input data-trans="newBookPricePlaceHolder" required name="new-book-price" type="text"
+                class="new-book-price" placeholder="Type Book Price...">
+            <button class="add-bookbtn" data-trans="addBook">Add Book</button>
+        </form>
+
+        <select class="sorting" onchange="onSortBy(this.value)">
+            <option value="" data-trans="selectSort">Select Sort</option>
+            <option value="price" data-trans="sortPrice">Price</option>
+            <option value="name" data-trans="sortName">Title</option>
+        </select>
+        <label for="filter-txt" data-trans="filterName">Filter By Name </label>
+        <input data-trans="filterNamePlaceHolder" type="text" name="filter-txt" placeholder="Search Book..."
+            class="filter-by-name" oninput="onSetFilterBy({txt:this.value})">
+        <div class="range-filters">
+            <label for="filter-rate" data-trans="filterRate">Filter By Rate </label>
+            <input name="filter-rate" type="range" min="-1" max="10" value="0" class="filter-by-rate"
+                onchange="this.title=this.value;onSetFilterBy({rate:this.value})">
+            <label for="filter-price" data-trans="filterPrice">Filter By Price </label>
+            <input name="filter-price" type="range" min="0" max="150" value="5" class="filter-by-price"
+                onchange="this.title=this.value;onSetFilterBy({price:this.value})">
+        </div>
+    </div>
+    <div class="books-container"></div>
+
+    <div class="modal">
+        <h3></h3>
+        <h4>Price: <span></span></h4>
+        <h5>Book Description:</h5>
+        <p></p>
+        <img src="" alt="">
+        <button class="close-btn" onclick="onCloseModal()">Close</button>
+        <h7></h7>
+        <div class="rating"><button class="ratebtn" onclick="onRatingChange(this)">➖</button><span></span><button
+                class="ratebtn" onclick="onRatingChange(this)">➕</button></div>
+    </div>
+
+    <div class="user-msg"></div>
+    <!-- <div class="pages-btns">
+        <button data-trans="prevPage" disabled class="prev-page" onclick="onPrevPage(this)">⏪Prev Page</button>
+        <h6 class="page-number">Page Number : 1</h6>
+         <button data-trans="nextPage" class="next-page" onclick="onNextPage(this)">Next Page⏩ </button> 
+    </div>
+    <div class="pages-btns-advanced">
+        <button disabled class="curr-page0" onclick="onMovePageTo(this.innerText)">0</button>
+        <button class="curr-page1" onclick="onMovePageTo(this.innerText)">1</button>
+        <button class="curr-page2" onclick="onMovePageTo(this.innerText)">2</button>
+    </div> -->
+    <div class="pages">
+        <div class="pages-btns">
+            <button data-trans="prevPage" disabled class="prev-page" onclick="onPrevPage(this)">⏪Prev Page</button>
+            <button disabled class="curr-page0" onclick="onMovePageTo(this.innerText)">0</button>
+            <button class="curr-page1" onclick="onMovePageTo(this.innerText)">1</button>
+            <button class="curr-page2" onclick="onMovePageTo(this.innerText)">2</button>
+            <button data-trans="nextPage" class="next-page" onclick="onNextPage(this)">Next Page⏩ </button>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+    <script defer src="js/services/trans.service.js"></script>
+    <script defer src="js/services/util.services.js"></script>
+    <script defer src="js/services/storage.srevices.js"></script>
+    <script defer src="js/services/book.services.js"></script>
+    <script defer src="js/books.controller.js"></script>
+</body>
+
+</html>
